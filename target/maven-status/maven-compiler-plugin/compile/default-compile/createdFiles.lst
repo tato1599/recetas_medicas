@@ -1,0 +1,11 @@
+app/appRecetas.class
+logica/Especialidad.class
+logica/Medico.class
+logica/Receta.class
+logica/Paciente.class
+vista/FrmLogin.class
+logica/Administrador.class
+logica/Consulta.class
+logica/ContactoEmergencia.class
+logica/Usuario.class
+logica/Expediente.class
