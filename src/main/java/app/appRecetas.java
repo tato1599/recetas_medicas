@@ -17,27 +17,7 @@ import vista.FrmMedico;
  */
 public class appRecetas {
  public static void main(String[] args) {
-        FrmLogin ventana = new FrmLogin();
-        executeQueries eq = new executeQueries();
-        ventana.setVisible(true);
-
-        ventana.getBtnIniciarSesion().addActionListener((e) -> {
-            String usuario = ventana.getTxtUsuario().getText();
-            String contra = ventana.getTxtContrasena().getText();
-            String tipoUsuario = eq.login(usuario, contra);
-            System.out.println(tipoUsuario);
-
-            if (tipoUsuario.equals("0")) {
-                FrmAdmin frmAdmin = new FrmAdmin();
-                frmAdmin.setVisible(true);
-                ventana.dispose(); 
-            } else if (tipoUsuario.equals("1")) {
-                FrmMedico frmMedico = new FrmMedico();
-                frmMedico.setVisible(true);
-                ventana.dispose(); 
-            } else {
-                JOptionPane.showMessageDialog(null, "Credenciales incorrectas");
-            }
-        });
+       FrmLogin ventana = new FrmLogin();
+       
     }
 }

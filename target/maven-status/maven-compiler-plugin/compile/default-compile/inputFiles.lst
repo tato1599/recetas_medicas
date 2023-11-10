@@ -3,13 +3,17 @@
 /Users/danielneri/NetBeansProjects/RecetasMedicas/src/main/java/vista/FrmLogin.java
 /Users/danielneri/NetBeansProjects/RecetasMedicas/src/main/java/logica/Paciente.java
 /Users/danielneri/NetBeansProjects/RecetasMedicas/src/main/java/logica/Consulta.java
+/Users/danielneri/NetBeansProjects/RecetasMedicas/src/main/java/logica/Medicamento.java
 /Users/danielneri/NetBeansProjects/RecetasMedicas/src/main/java/logica/Expediente.java
 /Users/danielneri/NetBeansProjects/RecetasMedicas/src/main/java/logica/Receta.java
 /Users/danielneri/NetBeansProjects/RecetasMedicas/src/main/java/logica/Usuario.java
 /Users/danielneri/NetBeansProjects/RecetasMedicas/src/main/java/logica/database/executeQueries.java
 /Users/danielneri/NetBeansProjects/RecetasMedicas/src/main/java/logica/DbConnection.java
 /Users/danielneri/NetBeansProjects/RecetasMedicas/src/main/java/logica/Medico.java
+/Users/danielneri/NetBeansProjects/RecetasMedicas/src/main/java/vista/FrmCrearMedico.java
 /Users/danielneri/NetBeansProjects/RecetasMedicas/src/main/java/app/appRecetas.java
 /Users/danielneri/NetBeansProjects/RecetasMedicas/src/main/java/vista/FrmAdmin.java
 /Users/danielneri/NetBeansProjects/RecetasMedicas/src/main/java/logica/Administrador.java
 /Users/danielneri/NetBeansProjects/RecetasMedicas/src/main/java/logica/Especialidad.java
+/Users/danielneri/NetBeansProjects/RecetasMedicas/src/main/java/vista/FrmCrearMedicamento.java
+/Users/danielneri/NetBeansProjects/RecetasMedicas/src/main/java/vista/FrmCrearPaciente.java

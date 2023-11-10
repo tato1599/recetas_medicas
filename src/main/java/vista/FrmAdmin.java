@@ -1,6 +1,8 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,10 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-public class FrmAdmin extends JFrame {
+public class FrmAdmin extends JFrame implements ActionListener{
     private JMenuBar menuBar;
     private JMenu menuOpciones;
-    private JMenuItem menuItemCerrarSesion;
+    private JMenuItem menuItemCerrarSesion,menuItemCrearMedicamento;
     private JTabbedPane tabbedPane;
     private JPanel panelMedicos;
     private JPanel panelMedicamentos;
@@ -36,8 +38,18 @@ public class FrmAdmin extends JFrame {
 
         // Menú
         menuBar = new JMenuBar();
-        menuOpciones = new JMenu("Opciones");
+        menuOpciones = new JMenu("opciones");
+        menuItemCrearMedicamento = new JMenuItem("Crear Medicamento");
+        menuItemCrearMedicamento.addActionListener(this);
+        menuOpciones.add(menuItemCrearMedicamento);
+
+        
         menuItemCerrarSesion = new JMenuItem("Cerrar Sesión");
+        menuItemCerrarSesion.addActionListener((e) -> {
+            FrmLogin frmLogin = new FrmLogin();
+            frmLogin.setVisible(true);
+            dispose();
+        });
         menuOpciones.add(menuItemCerrarSesion);
         menuBar.add(menuOpciones);
         setJMenuBar(menuBar);
@@ -67,5 +79,20 @@ public class FrmAdmin extends JFrame {
 
         add(tabbedPane, BorderLayout.CENTER);
         setLocationRelativeTo(null);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == btnAltaMedico){
+            FrmCrearMedico crearMedico = new FrmCrearMedico();
+            crearMedico.setVisible(true);
+            dispose();
+        }
+        if(e.getSource() == menuItemCrearMedicamento){
+            FrmCrearMedicamento frmCrearMedicamento = new FrmCrearMedicamento();
+            frmCrearMedicamento.setVisible(true);
+            dispose();
+        }
+    
     }
 }

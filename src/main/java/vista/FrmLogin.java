@@ -2,20 +2,24 @@ package vista;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import logica.database.executeQueries;
 
-public class FrmLogin extends JFrame {
+public class FrmLogin extends JFrame implements ActionListener {
     private JTextField txtUsuario;
     private JPasswordField txtContrasena;
     private JButton btnIniciarSesion;
     
     public FrmLogin() {
         initComponents();
+        setVisible(true);
     }
     
     private void initComponents() {
@@ -47,12 +51,10 @@ public class FrmLogin extends JFrame {
         gbc.gridy = 4;
         gbc.gridwidth = 1;
         btnIniciarSesion = new JButton("Iniciar Sesión");
+        btnIniciarSesion.addActionListener(this);
         panel.add(btnIniciarSesion, gbc);
         
-        gbc.gridx = 1;
-        JButton btnCancelar = new JButton("Cancelar");
-        panel.add(btnCancelar, gbc);
-        
+       
         add(panel);
         pack();
         setLocationRelativeTo(null);
@@ -68,6 +70,23 @@ public class FrmLogin extends JFrame {
 
     public JButton getBtnIniciarSesion() {
         return btnIniciarSesion;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == btnIniciarSesion){
+            executeQueries eq = new executeQueries();
+            String responseLogin = eq.login(txtUsuario.getText(), txtContrasena.getText());
+            System.out.println(responseLogin);
+            if(!"admin".equals(responseLogin)){
+                FrmMedico med = new FrmMedico();
+                med.setVisible(true);
+            }else{
+                FrmAdmin admin = new FrmAdmin();
+                admin.setVisible(true);
+            }
+        }
+    
     }
 
     

@@ -8,4 +8,5 @@ logica/Administrador.class
 logica/Consulta.class
 logica/ContactoEmergencia.class
 logica/Usuario.class
+vista/FrmCrearPaciente$1.class
 logica/Expediente.class
