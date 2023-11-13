@@ -99,10 +99,12 @@ public class FrmCrearMedicamento extends JFrame implements ActionListener
             executeQueries queries = new executeQueries();
             Medicamento medicamento = new Medicamento(txtNombre.getText(), txtPresentacion.getText(), txtModoEmpleo.getText(), txtFabricante.getText(), Integer.parseInt(txtCantidad.getText()), txtUnidadCantidad.getText());
             queries.CrearMedicamento(medicamento);  
-            
+            FrmAdmin adm = new FrmAdmin();
+            adm.setVisible(true);
+            this.dispose();
         }
         if(e.getSource() == btnCancelar){
-       //abrira el menu principal
+    
        FrmAdmin frmAdministrador = new FrmAdmin();
        frmAdministrador.setVisible(true);
          this.dispose();

@@ -56,18 +56,18 @@ public class FrmAdmin extends JFrame implements ActionListener{
 
         // Pestañas para médicos y medicamentos
         tabbedPane = new JTabbedPane();
-
+        
         // Panel para médicos
         panelMedicos = new JPanel();
         lblNombreMedico = new JLabel("Nombre del Médico:");
         txtNombreMedico = new JTextField(20);
         btnAltaMedico = new JButton("Dar de Alta Médico");
+        btnAltaMedico.addActionListener(this);
         panelMedicos.add(lblNombreMedico);
         panelMedicos.add(txtNombreMedico);
         panelMedicos.add(btnAltaMedico);
         tabbedPane.addTab("Médicos", panelMedicos);
-
-        // Panel para medicamentos
+        
         panelMedicamentos = new JPanel();
         lblNombreMedicamento = new JLabel("Nombre del Medicamento:");
         txtNombreMedicamento = new JTextField(20);

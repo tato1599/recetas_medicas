@@ -34,7 +34,7 @@ public class executeQueries {
         } catch (Exception e) {
             return "Error al obtener el usuario y la contraseña: " + e.getMessage();
         } finally {
-            
+
         }
 
     }
@@ -134,13 +134,40 @@ public class executeQueries {
             pstmt.setString(2, medico.getApellido_paterno());
             pstmt.setString(3, medico.getApellido_materno());
             pstmt.setString(4, medico.getCedula());
-            pstmt.setBoolean(5, medico.isStatus());
+            pstmt.setBoolean(5, true);
 
             pstmt.executeUpdate();
 
         } catch (Exception e) {
             System.out.println("Error al guardar " + e.getMessage());
         }
+    }
+
+    public Object listaMedicos() {
+        //hacer una lista 
+        List<Medico> listaMedicos = new ArrayList<>();
+        //regresar todos los pacientes de la base de datos en un arraylist
+        String query = "SELECT * FROM Medicos";
+        try {
+            Connection con = new DbConnection().getConnection();
+            java.sql.Statement stmt = con.createStatement();
+            java.sql.ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                String nombre = rs.getString("nombre");
+                String apellidoPaterno = rs.getString("apellido_paterno");
+                String apellidoMaterno = rs.getString("apellido_materno");
+                String cedula = rs.getString("cedula");
+                boolean status = rs.getBoolean("status");
+
+                Medico medico = new Medico(nombre, apellidoPaterno, apellidoMaterno, cedula, status);
+                listaMedicos.add(medico);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener los medicos: " + e.getMessage());
+        }
+        return listaMedicos;
     }
 
 }

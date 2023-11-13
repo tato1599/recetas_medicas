@@ -78,10 +78,10 @@ public class FrmLogin extends JFrame implements ActionListener {
             executeQueries eq = new executeQueries();
             String responseLogin = eq.login(txtUsuario.getText(), txtContrasena.getText());
             System.out.println(responseLogin);
-            if(!"admin".equals(responseLogin)){
+            if("medico".equals(responseLogin)){
                 FrmMedico med = new FrmMedico();
                 med.setVisible(true);
-            }else{
+            }else if("admin".equals(responseLogin)){
                 FrmAdmin admin = new FrmAdmin();
                 admin.setVisible(true);
             }

@@ -7,6 +7,8 @@ package vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import logica.Medico;
+import logica.database.executeQueries;
 
 /**
  *
@@ -14,8 +16,8 @@ import javax.swing.*;
  */
 public class FrmCrearMedico extends JFrame implements ActionListener
 {
-    private JTextField txtNombre, txtApellidoPaterno, txtApellidoMaterno, txtCedula , txtEspecialidad , txtStatus ;
-    private JLabel lblNombre, lblApellidoPaterno, lblApellidoMaterno, lblCedula , lblEspecialidad , lblStatus ;
+    private JTextField txtNombre, txtApellidoPaterno, txtApellidoMaterno, txtCedula , txtEspecialidad  ;
+    private JLabel lblNombre, lblApellidoPaterno, lblApellidoMaterno, lblCedula , lblEspecialidad ;
     private JButton btnGuardar, btnCancelar;
 
     public FrmCrearMedico() {
@@ -67,13 +69,6 @@ public class FrmCrearMedico extends JFrame implements ActionListener
         txtEspecialidad.setBounds(120, 170, 200, 30);
         this.add(txtEspecialidad);
         
-        lblStatus = new JLabel("Status");
-        lblStatus.setBounds(10, 210, 100, 30);
-        this.add(lblStatus);
-        
-        txtStatus = new JTextField();
-        txtStatus.setBounds(120, 210, 200, 30);
-        this.add(txtStatus);
         
         btnGuardar = new JButton("Guardar");
         btnGuardar.setBounds(10, 250, 100,
@@ -91,9 +86,16 @@ public class FrmCrearMedico extends JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnGuardar) {
-            JOptionPane.showMessageDialog(null, "Se ha guardado el registro");
+            executeQueries eq = new executeQueries();
+            Medico medico = new Medico(txtNombre.getText(), txtApellidoPaterno.getText() , txtApellidoMaterno.getText(), txtCedula.getText(), true);
+            eq.CrearMedico(medico);
+            FrmAdmin adm = new FrmAdmin();
+            adm.setVisible(true);
+            this.dispose();
         } else if (e.getSource() == btnCancelar) {
-            JOptionPane.showMessageDialog(null, "Se ha cancelado el registro");
+             FrmAdmin adm = new FrmAdmin();
+            adm.setVisible(true);
+            this.dispose();
         }
     }
 
