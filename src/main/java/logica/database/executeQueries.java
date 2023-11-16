@@ -43,20 +43,21 @@ public class executeQueries {
         //hacer una lista 
         List<Paciente> listaPacientes = new ArrayList<>();
         //regresar todos los pacientes de la base de datos en un arraylist
-        String query = "SELECT * FROM pacientes";
+        String query = "SELECT * FROM Pacientes";
         try {
             Connection con = new DbConnection().getConnection();
             java.sql.Statement stmt = con.createStatement();
             java.sql.ResultSet rs = stmt.executeQuery(query);
 
             while (rs.next()) {
+                int id_paciente = rs.getInt("id_paciente");
                 String nombre = rs.getString("nombre");
                 String apellidoPaterno = rs.getString("apellido_paterno");
                 String apellidoMaterno = rs.getString("apellido_materno");
                 String nacimiento = rs.getString("fecha_nacimiento");
                 String id_contacto = rs.getString("id_contacto");
 
-                Paciente paciente = new Paciente(nombre, apellidoPaterno, apellidoMaterno, nacimiento, id_contacto);
+                Paciente paciente = new Paciente(id_paciente, nombre, apellidoPaterno, apellidoMaterno, nacimiento, id_contacto);
                 listaPacientes.add(paciente);
             }
 
@@ -67,7 +68,7 @@ public class executeQueries {
     }
 
     public void CrearPaciente(Paciente paciente) {
-        String query = "INSERT INTO pacientes (nombre, apellido_paterno, apellido_materno, fecha_nacimiento, id_contacto) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Pacientes (nombre, apellido_paterno, apellido_materno, fecha_nacimiento, id_contacto) VALUES (?, ?, ?, ?, ?)";
         try {
             Connection con = new DbConnection().getConnection();
             PreparedStatement pstmt = con.prepareStatement(query);
@@ -168,6 +169,34 @@ public class executeQueries {
             System.out.println("Error al obtener los medicos: " + e.getMessage());
         }
         return listaMedicos;
+    }
+
+    public Paciente obtenerPacienteId(String numero) {
+        Paciente paciente = new Paciente();
+        String query = "SELECT * FROM Pacientes WHERE id_paciente = ?";
+        try {
+            Connection con = new DbConnection().getConnection();
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setString(1, numero);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                String nombre = rs.getString("nombre");
+                String apellidoPaterno = rs.getString("apellido_paterno");
+                String apellidoMaterno = rs.getString("apellido_materno");
+                String nacimiento = rs.getString("fecha_nacimiento");
+                String id_contacto = rs.getString("id_contacto");
+
+                paciente = new Paciente(nombre, apellidoPaterno, apellidoMaterno, nacimiento, id_contacto);
+
+                
+
+            }
+        } catch (Exception e) {
+            System.out.println("Error al buscar paciente " + e.getMessage());
+        }
+        return paciente;
     }
 
 }

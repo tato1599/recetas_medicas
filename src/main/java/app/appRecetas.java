@@ -19,4 +19,5 @@ public class appRecetas {
  public static void main(String[] args) {
        FrmLogin ventana = new FrmLogin();
     }
+
 }

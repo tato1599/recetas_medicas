@@ -65,19 +65,19 @@ public class FrmMedico extends JFrame implements ActionListener {
         executeQueries query = new executeQueries();
 
         // Tabla de pacientes
-        String[] columnas = {"Nombre", "Apellido Paterno", "Apellido Materno", "Nacimiento"};
+        String[] columnas = {"id","Nombre", "Apellido Paterno", "Apellido Materno", "Nacimiento"};
         DefaultTableModel model = new DefaultTableModel(columnas, 0);
 
         List<Paciente> pacientes = (List<Paciente>) query.pacientes();
 
         for (Paciente paciente : pacientes) {
-            Object[] rowData = {paciente.getNombre(), paciente.getApellidoPaterno(), paciente.getApellidoMaterno(), paciente.getNacimiento()};
+            Object[] rowData = {paciente.getId_paciente(),paciente.getNombre(), paciente.getApellidoPaterno(), paciente.getApellidoMaterno(), paciente.getNacimiento()};
             model.addRow(rowData);
         }
 
         tablaPacientes = new JTable(model);
         JScrollPane scrollPane = new JScrollPane(tablaPacientes);
-        
+
         tablaPacientes.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -86,13 +86,21 @@ public class FrmMedico extends JFrame implements ActionListener {
             }
 
             private void obtenerDatos(int row) {
-                System.out.println(row);
+                executeQueries eq = new executeQueries();
+                String row_table = tablaPacientes.getValueAt(row, 0).toString();
+                Paciente pacienteMostrar = new Paciente();
+                pacienteMostrar = eq.obtenerPacienteId(row_table);
+                btnVerPaciente.setEnabled(true);
+                btnEliminar.setEnabled(true);
+
             }
         
         });
 
 
+
         btnVerPaciente = new JButton("Ver paciente");
+        btnVerPaciente.addActionListener(this);
         btnVerPaciente.setEnabled(false);
         btnEliminar = new JButton("Eliminar paciente");
         btnEliminar.setEnabled(false);
@@ -117,12 +125,21 @@ public class FrmMedico extends JFrame implements ActionListener {
             frmCrearPaciente.setVisible(true);
             dispose();
         }
+        if (e.getSource() == btnCrearReceta) {
+            FrmCrearReceta frmCrearReceta = new FrmCrearReceta();
+            frmCrearReceta.setVisible(true);
+            dispose();
+        }
+        if (e.getSource() == btnVerPaciente) {
+
+        }
 
     }
 
-    private void obtenerPaciente(int row) {
+    private void obtenerPaciente(Paciente paciente) {
 
-        System.out.println("Fila " + row);
+
+
 
     }
 
